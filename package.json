@@ -1,0 +1,20 @@
+{
+  "name": "kayo",
+  "private": true,
+  "packageManager": "pnpm@10.17.1",
+  "scripts": {
+    "build": "turbo run build",
+    "test": "turbo run test",
+    "lint": "turbo run lint",
+    "format:check": "prettier --check .",
+    "generate:assets": "bash scripts/generate-assets.sh",
+    "generate:brand": "node scripts/generate-brand-swift.mjs",
+    "verify:icons": "bash scripts/verify-icons.sh",
+    "security:check": "bash scripts/security-scan.sh",
+    "prepare": "pnpm run generate:brand"
+  },
+  "devDependencies": {
+    "prettier": "^3.6.2",
+    "turbo": "^2.5.6"
+  }
+}

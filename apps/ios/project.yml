@@ -1,0 +1,42 @@
+name: KAYO
+options:
+  createIntermediateGroups: true
+configs:
+  Debug: debug
+  Release: release
+configFiles:
+  Debug: Config/Debug.xcconfig
+  Release: Config/Release.xcconfig
+targets:
+  KAYO:
+    type: application
+    platform: iOS
+    deploymentTarget: "17.0"
+    sources:
+      - path: KAYO
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.kayo.app
+        PRODUCT_NAME: KAYO
+        INFOPLIST_FILE: KAYO/Info.plist
+        SWIFT_VERSION: 5.0
+        CURRENT_PROJECT_VERSION: 1
+        MARKETING_VERSION: 1.0.0
+        CODE_SIGN_STYLE: Automatic
+        TARGETED_DEVICE_FAMILY: 1
+        ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
+    scheme:
+      testTargets:
+        - KAYOTests
+  KAYOTests:
+    type: bundle.unit-test
+    platform: iOS
+    deploymentTarget: "17.0"
+    sources:
+      - path: KAYOTests
+    dependencies:
+      - target: KAYO
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.kayo.app.tests
+        GENERATE_INFOPLIST_FILE: YES

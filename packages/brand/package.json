@@ -1,0 +1,15 @@
+{
+  "name": "@kayo/brand",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts",
+    "./tokens.json": "./src/tokens.json"
+  },
+  "scripts": {
+    "build": "mkdir -p generated && cp src/tokens.json generated/tokens.json",
+    "test": "echo 'no package-level tests'",
+    "lint": "echo 'no package-level lint'"
+  }
+}

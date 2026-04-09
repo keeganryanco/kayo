@@ -1,0 +1,9 @@
+node_modules
+.pnpm-store
+.turbo
+
+apps/web/.next
+apps/ios/KAYO/Assets.xcassets
+apps/ios/KAYO/Shared/Design/Generated
+packages/brand/generated
+assets/source

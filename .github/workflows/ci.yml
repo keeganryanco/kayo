@@ -1,0 +1,47 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  web-and-shared:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 10.17.1
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: pnpm
+      - run: pnpm install
+      - run: pnpm run generate:brand
+      - run: pnpm run lint
+      - run: pnpm run test
+      - run: pnpm run build
+
+  ios:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 10.17.1
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: pnpm
+      - run: brew install xcodegen
+      - run: pnpm install
+      - run: pnpm run generate:assets
+      - run: pnpm run generate:brand
+      - run: bash scripts/verify-icons.sh
+      - run: |
+          cd apps/ios
+          xcodegen generate
+          DEVICE_ID=$(xcrun simctl list devices available iOS | awk -F '[()]' '/iPhone/ {print $2; exit}')
+          xcodebuild -scheme KAYO -destination "id=$DEVICE_ID" build
+          xcodebuild -scheme KAYO -destination "id=$DEVICE_ID" test

@@ -1,0 +1,32 @@
+# macOS
+.DS_Store
+
+# Node
+node_modules/
+.pnpm-store/
+.turbo/
+coverage/
+apps/web/.next/
+apps/web/.vercel/
+
+# Environment
+.env
+.env.*
+!.env.example
+
+# iOS / Xcode
+DerivedData/
+*.xcuserstate
+*.xccheckout
+*.moved-aside
+*.xcuserdatad/
+*.xcscmblueprint
+.build/
+.swiftpm/
+apps/ios/*.xcodeproj/
+
+# App-specific local config
+apps/ios/Config/Local.xcconfig
+
+# Generated artifacts
+*.log
