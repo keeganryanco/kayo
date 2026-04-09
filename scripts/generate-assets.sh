@@ -15,6 +15,7 @@ mkdir -p "$IOS_FONT_DIR" "$IOS_ICON_DIR" "$WEB_GEN_DIR/icons" "$WEB_GEN_DIR/font
 
 cp "$FONT_OTF_SOURCE" "$IOS_FONT_DIR/GillKayoCondensedPlain.otf"
 cp "$FONT_WOFF_SOURCE" "$WEB_GEN_DIR/fonts/GillKayoCondensedPlain.woff"
+cp "$FONT_OTF_SOURCE" "$WEB_GEN_DIR/fonts/GillKayoCondensedPlain.otf"
 
 # Web icon outputs
 cp "$SOURCE_DIR/icons/kayo_large_light.png" "$WEB_GEN_DIR/icons/logo-1552.png"

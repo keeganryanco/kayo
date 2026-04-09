@@ -1,13 +1,7 @@
 import type { Metadata } from "next";
-import localFont from "next/font/local";
 import { brandTokens } from "@kayo/brand";
+import FooterNav from "./components/FooterNav";
 import "./globals.css";
-
-const gillKayo = localFont({
-  src: "../public/generated/fonts/GillKayoCondensedPlain.woff",
-  variable: "--font-kayo-display",
-  display: "swap",
-});
 
 const appUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://kayo.app";
 
@@ -38,8 +32,11 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" className={gillKayo.variable}>
-      <body>{children}</body>
+    <html lang="en">
+      <body>
+        {children}
+        <FooterNav />
+      </body>
     </html>
   );
 }
