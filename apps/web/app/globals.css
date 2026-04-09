@@ -55,12 +55,36 @@ a {
   margin-inline: auto;
 }
 
-.brand {
-  margin: 0 0 0.75rem;
-  font-family: var(--font-kayo-display), var(--font-kayo-sans);
-  font-size: clamp(1.25rem, 2vw, 1.5rem);
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
+.site-logo-link {
+  display: inline-flex;
+  width: fit-content;
+  text-decoration: none;
+  transition: transform 120ms ease;
+}
+
+.site-logo-link:focus-visible {
+  outline: 2px solid var(--kayo-near-black);
+  outline-offset: 4px;
+}
+
+.site-logo-link:hover {
+  transform: translateY(-1px);
+}
+
+.site-logo-image {
+  display: block;
+  width: 5.2rem;
+  height: 5.2rem;
+  object-fit: contain;
+}
+
+.hero-logo {
+  margin: 0 0 1rem;
+}
+
+.hero-logo .site-logo-image {
+  width: clamp(4.8rem, 9vw, 6.5rem);
+  height: clamp(4.8rem, 9vw, 6.5rem);
 }
 
 h1 {
@@ -148,11 +172,13 @@ h1 {
   margin-inline: auto;
 }
 
-.legal-kicker {
-  margin: 0;
-  font-family: var(--font-kayo-display), var(--font-kayo-sans);
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
+.legal-logo {
+  margin: 0 0 0.85rem;
+}
+
+.legal-logo .site-logo-image {
+  width: 4rem;
+  height: 4rem;
 }
 
 .legal-meta {

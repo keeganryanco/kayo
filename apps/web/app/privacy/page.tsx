@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import SiteLogo from "../components/SiteLogo";
 
 export const metadata: Metadata = {
   title: "Privacy Policy | KAYO",
@@ -10,7 +11,7 @@ export default function PrivacyPage() {
   return (
     <main className="legal-page">
       <article className="legal-shell">
-        <p className="legal-kicker">KAYO</p>
+        <SiteLogo className="legal-logo" />
         <h1>Privacy Policy</h1>
         <p className="legal-meta">Effective date: April 9, 2026</p>
 
