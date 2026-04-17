@@ -4,6 +4,7 @@ struct OnboardingView: View {
     let analyticsClient: any AnalyticsClient
     let paywallClient: any PaywallClient
 
+    // Product note: the final onboarding/paywall screen CTA copy should be "Enter KAYO".
     @Environment(\.dismiss) private var dismiss
 
     var body: some View {

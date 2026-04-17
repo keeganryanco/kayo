@@ -26,3 +26,7 @@
 - Brand tokens are source-of-truth in `packages/brand/src/tokens.ts`
 - Generated Swift constants mirror the same tokens
 - Analytics events must be represented in taxonomy docs before usage
+
+## Product Notes
+
+- Onboarding final screen CTA copy should be `Enter KAYO` (likely on paywall step)

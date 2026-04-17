@@ -1,5 +1,4 @@
 import SwiftUI
-import UIKit
 
 struct HomeView: View {
     let analyticsClient: any AnalyticsClient
@@ -11,32 +10,41 @@ struct HomeView: View {
         ZStack {
             Color.kayoGold.ignoresSafeArea()
 
-            VStack(alignment: .leading, spacing: 20) {
-                KAYOLogoView()
+            VStack(spacing: 0) {
+                Spacer(minLength: 0)
 
-                Text("Knock out your screen time.")
-                    .font(.kayoDisplay(size: 54))
-                    .foregroundStyle(Color.kayoNearBlack)
-                    .lineSpacing(2)
+                KAYOHeroLogoView()
+                    .padding(.horizontal, 20)
 
-                Text("A focused screen-time app for founders and builders in grind mode.")
-                    .font(.kayoBody(size: 18))
-                    .foregroundStyle(Color.kayoNearBlack)
-                    .fixedSize(horizontal: false, vertical: true)
+                Spacer(minLength: 12)
 
-                Button("Start onboarding") {
-                    analyticsClient.track(
-                        event: .onboardingStarted,
-                        properties: EventProperties(values: [
-                            .screenName: "home",
-                            .source: "home_primary_cta"
-                        ])
-                    )
-                    showsOnboarding = true
+                VStack(alignment: .leading, spacing: 18) {
+                    Text("Knock out your screentime")
+                        .font(.kayoDisplay(size: 62))
+                        .foregroundStyle(Color.kayoNearBlack)
+                        .lineSpacing(2)
+                        .fixedSize(horizontal: false, vertical: true)
+
+                    Text("Reclaim 100 days a year for the work that actually matters")
+                        .font(.kayoBody(size: 16))
+                        .foregroundStyle(Color.kayoNearBlack)
+                        .fixedSize(horizontal: false, vertical: true)
+
+                    Button("Get Started") {
+                        analyticsClient.track(
+                            event: .onboardingStarted,
+                            properties: EventProperties(values: [
+                                .screenName: "home",
+                                .source: "home_get_started_cta"
+                            ])
+                        )
+                        showsOnboarding = true
+                    }
+                    .buttonStyle(KAYOPrimaryButtonStyle())
                 }
-                .buttonStyle(KAYOPrimaryButtonStyle())
+                .padding(.horizontal, 24)
+                .padding(.bottom, 24)
             }
-            .padding(24)
         }
         .sheet(isPresented: $showsOnboarding) {
             OnboardingView(
@@ -50,20 +58,18 @@ struct HomeView: View {
     }
 }
 
-private struct KAYOLogoView: View {
+private struct KAYOHeroLogoView: View {
     var body: some View {
-        if let image = UIImage(named: "KAYOLogo") {
-            Image(uiImage: image)
-                .resizable()
-                .renderingMode(.original)
-                .scaledToFit()
-                .frame(width: 64, height: 64)
+        GeometryReader { proxy in
+            Text("KAYO")
+                .font(.kayoDisplay(size: min(220, proxy.size.width * 0.44)))
+                .foregroundStyle(Color.kayoNearBlack)
+                .lineLimit(1)
+                .minimumScaleFactor(0.7)
+                .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
                 .accessibilityLabel("KAYO logo")
-        } else {
-            Text("Missing KAYOLogo asset")
-                .font(.kayoBody(size: 14))
-                .foregroundStyle(.red)
         }
+        .frame(height: 210)
     }
 }
 
