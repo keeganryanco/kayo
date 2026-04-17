@@ -1,5 +1,4 @@
 import React from "react";
-import Image from "next/image";
 import Link from "next/link";
 
 type SiteLogoProps = {
@@ -12,14 +11,9 @@ export default function SiteLogo({ className, priority = false }: SiteLogoProps)
 
   return (
     <Link href="/" className={classes} aria-label="Go to KAYO homepage">
-      <Image
-        src="/generated/icons/logo-1552.png"
-        alt="KAYO logo"
-        width={96}
-        height={96}
-        priority={priority}
-        className="site-logo-image"
-      />
+      <span className="site-logo-wordmark" data-priority={priority ? "true" : "false"}>
+        KAYO
+      </span>
     </Link>
   );
 }

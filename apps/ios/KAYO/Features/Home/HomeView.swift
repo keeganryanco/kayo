@@ -12,7 +12,8 @@ struct HomeView: View {
 
             VStack(alignment: .leading, spacing: 20) {
                 Text("KAYO")
-                    .font(.kayoDisplay(size: 36))
+                    .font(.system(size: 56, weight: .medium, design: .default))
+                    .tracking(0.6)
                     .foregroundStyle(Color.kayoNearBlack)
 
                 Text("Knock out your screen time.")
