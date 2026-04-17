@@ -60,16 +60,13 @@ struct HomeView: View {
 
 private struct KAYOHeroLogoView: View {
     var body: some View {
-        GeometryReader { proxy in
-            Text("KAYO")
-                .font(.kayoDisplay(size: min(220, proxy.size.width * 0.44)))
-                .foregroundStyle(Color.kayoNearBlack)
-                .lineLimit(1)
-                .minimumScaleFactor(0.7)
-                .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
-                .accessibilityLabel("KAYO logo")
-        }
-        .frame(height: 210)
+        Image("KAYOHeroLogo")
+            .resizable()
+            .renderingMode(.original)
+            .scaledToFit()
+            .frame(maxWidth: .infinity)
+            .frame(height: 360)
+            .accessibilityLabel("KAYO logo")
     }
 }
 

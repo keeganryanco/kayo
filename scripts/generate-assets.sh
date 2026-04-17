@@ -11,9 +11,10 @@ IOS_FONT_DIR="$ROOT_DIR/apps/ios/KAYO/Fonts"
 IOS_ASSET_DIR="$ROOT_DIR/apps/ios/KAYO/Assets.xcassets"
 IOS_ICON_DIR="$ROOT_DIR/apps/ios/KAYO/Assets.xcassets/AppIcon.appiconset"
 IOS_LOGO_DIR="$ROOT_DIR/apps/ios/KAYO/Assets.xcassets/KAYOLogo.imageset"
+IOS_HERO_LOGO_DIR="$ROOT_DIR/apps/ios/KAYO/Assets.xcassets/KAYOHeroLogo.imageset"
 WEB_GEN_DIR="$ROOT_DIR/apps/web/public/generated"
 
-mkdir -p "$IOS_FONT_DIR" "$IOS_ASSET_DIR" "$IOS_ICON_DIR" "$IOS_LOGO_DIR" "$WEB_GEN_DIR/icons" "$WEB_GEN_DIR/fonts"
+mkdir -p "$IOS_FONT_DIR" "$IOS_ASSET_DIR" "$IOS_ICON_DIR" "$IOS_LOGO_DIR" "$IOS_HERO_LOGO_DIR" "$WEB_GEN_DIR/icons" "$WEB_GEN_DIR/fonts"
 
 cp "$FONT_OTF_SOURCE" "$IOS_FONT_DIR/GillKayoCondensedPlain.otf"
 cp "$FONT_WOFF_SOURCE" "$WEB_GEN_DIR/fonts/GillKayoCondensedPlain.woff"
@@ -30,6 +31,22 @@ cat > "$IOS_LOGO_DIR/Contents.json" <<'JSON'
     { "idiom" : "universal", "filename" : "KAYOLogo@1x.png", "scale" : "1x" },
     { "idiom" : "universal", "filename" : "KAYOLogo@2x.png", "scale" : "2x" },
     { "idiom" : "universal", "filename" : "KAYOLogo@3x.png", "scale" : "3x" }
+  ],
+  "info" : { "version" : 1, "author" : "xcode" }
+}
+JSON
+
+# iOS welcome hero logo imageset (16x9 source, vertical lockup)
+cp "$SOURCE_DIR/icons/kayo_16x9_light_transparent.png" "$IOS_HERO_LOGO_DIR/KAYOHeroLogo@3x.png"
+sips -z 852 393 "$IOS_HERO_LOGO_DIR/KAYOHeroLogo@3x.png" --out "$IOS_HERO_LOGO_DIR/KAYOHeroLogo@2x.png" >/dev/null
+sips -z 426 197 "$IOS_HERO_LOGO_DIR/KAYOHeroLogo@3x.png" --out "$IOS_HERO_LOGO_DIR/KAYOHeroLogo@1x.png" >/dev/null
+
+cat > "$IOS_HERO_LOGO_DIR/Contents.json" <<'JSON'
+{
+  "images" : [
+    { "idiom" : "universal", "filename" : "KAYOHeroLogo@1x.png", "scale" : "1x" },
+    { "idiom" : "universal", "filename" : "KAYOHeroLogo@2x.png", "scale" : "2x" },
+    { "idiom" : "universal", "filename" : "KAYOHeroLogo@3x.png", "scale" : "3x" }
   ],
   "info" : { "version" : 1, "author" : "xcode" }
 }
