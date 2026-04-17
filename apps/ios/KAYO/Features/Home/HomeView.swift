@@ -56,12 +56,11 @@ struct HomeView: View {
 
 private struct KAYOBlockHeadlineView: View {
     var body: some View {
-        VStack(alignment: .leading, spacing: -8) {
-            Text("Knock out")
-            Text("your")
+        VStack(alignment: .leading, spacing: -14) {
+            Text("Knock out your")
             Text("screentime")
         }
-        .font(.kayoDisplay(size: 62))
+        .font(.kayoDisplay(size: 54))
         .foregroundStyle(Color.kayoNearBlack)
         .fixedSize(horizontal: false, vertical: true)
     }
