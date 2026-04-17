@@ -12,7 +12,7 @@ struct HomeView: View {
             Color.kayoGold.ignoresSafeArea()
 
             VStack(alignment: .leading, spacing: 20) {
-                KAYOWordmarkLogoView()
+                KAYOLogoView()
 
                 Text("Knock out your screen time.")
                     .font(.kayoDisplay(size: 54))
@@ -50,20 +50,19 @@ struct HomeView: View {
     }
 }
 
-private struct KAYOWordmarkLogoView: View {
+private struct KAYOLogoView: View {
     var body: some View {
-        if let image = UIImage(named: "KAYOWordmark") {
+        if let image = UIImage(named: "KAYOLogo") {
             Image(uiImage: image)
                 .resizable()
                 .renderingMode(.original)
                 .scaledToFit()
-                .frame(height: 52)
-                .accessibilityLabel("KAYO")
+                .frame(width: 64, height: 64)
+                .accessibilityLabel("KAYO logo")
         } else {
-            Text("KAYO")
-                .font(.system(size: 56, weight: .medium, design: .default))
-                .tracking(0.6)
-                .foregroundStyle(Color.kayoNearBlack)
+            Text("Missing KAYOLogo asset")
+                .font(.kayoBody(size: 14))
+                .foregroundStyle(.red)
         }
     }
 }
