@@ -19,11 +19,7 @@ struct HomeView: View {
                 Spacer(minLength: 12)
 
                 VStack(alignment: .leading, spacing: 18) {
-                    Text("Knock out your screentime")
-                        .font(.kayoDisplay(size: 62))
-                        .foregroundStyle(Color.kayoNearBlack)
-                        .lineSpacing(2)
-                        .fixedSize(horizontal: false, vertical: true)
+                    KAYOBlockHeadlineView()
 
                     Text("Reclaim 100 days a year for the work that actually matters")
                         .font(.kayoBody(size: 16))
@@ -55,6 +51,19 @@ struct HomeView: View {
         .onAppear {
             analyticsClient.track(event: .appOpened, properties: .empty)
         }
+    }
+}
+
+private struct KAYOBlockHeadlineView: View {
+    var body: some View {
+        VStack(alignment: .leading, spacing: -8) {
+            Text("Knock out")
+            Text("your")
+            Text("screentime")
+        }
+        .font(.kayoDisplay(size: 62))
+        .foregroundStyle(Color.kayoNearBlack)
+        .fixedSize(horizontal: false, vertical: true)
     }
 }
 
