@@ -8,14 +8,32 @@ FONT_OTF_SOURCE="$SOURCE_DIR/fonts/GillKayoCondensedPlain.otf"
 FONT_WOFF_SOURCE="$SOURCE_DIR/fonts/GillKayoCondensedPlain.woff"
 
 IOS_FONT_DIR="$ROOT_DIR/apps/ios/KAYO/Fonts"
+IOS_ASSET_DIR="$ROOT_DIR/apps/ios/KAYO/Assets.xcassets"
 IOS_ICON_DIR="$ROOT_DIR/apps/ios/KAYO/Assets.xcassets/AppIcon.appiconset"
+IOS_WORDMARK_DIR="$ROOT_DIR/apps/ios/KAYO/Assets.xcassets/KAYOWordmark.imageset"
 WEB_GEN_DIR="$ROOT_DIR/apps/web/public/generated"
 
-mkdir -p "$IOS_FONT_DIR" "$IOS_ICON_DIR" "$WEB_GEN_DIR/icons" "$WEB_GEN_DIR/fonts"
+mkdir -p "$IOS_FONT_DIR" "$IOS_ASSET_DIR" "$IOS_ICON_DIR" "$IOS_WORDMARK_DIR" "$WEB_GEN_DIR/icons" "$WEB_GEN_DIR/fonts"
 
 cp "$FONT_OTF_SOURCE" "$IOS_FONT_DIR/GillKayoCondensedPlain.otf"
 cp "$FONT_WOFF_SOURCE" "$WEB_GEN_DIR/fonts/GillKayoCondensedPlain.woff"
 cp "$FONT_OTF_SOURCE" "$WEB_GEN_DIR/fonts/GillKayoCondensedPlain.otf"
+
+# iOS wordmark logo imageset
+swift "$ROOT_DIR/scripts/render-wordmark.swift" "$IOS_WORDMARK_DIR/KAYOWordmark@3x.png" 360 132 "KAYO" "1E1E1E"
+sips -z 88 240 "$IOS_WORDMARK_DIR/KAYOWordmark@3x.png" --out "$IOS_WORDMARK_DIR/KAYOWordmark@2x.png" >/dev/null
+sips -z 44 120 "$IOS_WORDMARK_DIR/KAYOWordmark@3x.png" --out "$IOS_WORDMARK_DIR/KAYOWordmark@1x.png" >/dev/null
+
+cat > "$IOS_WORDMARK_DIR/Contents.json" <<'JSON'
+{
+  "images" : [
+    { "idiom" : "universal", "filename" : "KAYOWordmark@1x.png", "scale" : "1x" },
+    { "idiom" : "universal", "filename" : "KAYOWordmark@2x.png", "scale" : "2x" },
+    { "idiom" : "universal", "filename" : "KAYOWordmark@3x.png", "scale" : "3x" }
+  ],
+  "info" : { "version" : 1, "author" : "xcode" }
+}
+JSON
 
 # Web icon outputs
 cp "$SOURCE_DIR/icons/kayo_large_light.png" "$WEB_GEN_DIR/icons/logo-1552.png"

@@ -1,4 +1,5 @@
 import SwiftUI
+import UIKit
 
 struct HomeView: View {
     let analyticsClient: any AnalyticsClient
@@ -11,10 +12,7 @@ struct HomeView: View {
             Color.kayoGold.ignoresSafeArea()
 
             VStack(alignment: .leading, spacing: 20) {
-                Text("KAYO")
-                    .font(.system(size: 56, weight: .medium, design: .default))
-                    .tracking(0.6)
-                    .foregroundStyle(Color.kayoNearBlack)
+                KAYOWordmarkLogoView()
 
                 Text("Knock out your screen time.")
                     .font(.kayoDisplay(size: 54))
@@ -48,6 +46,24 @@ struct HomeView: View {
         }
         .onAppear {
             analyticsClient.track(event: .appOpened, properties: .empty)
+        }
+    }
+}
+
+private struct KAYOWordmarkLogoView: View {
+    var body: some View {
+        if let image = UIImage(named: "KAYOWordmark") {
+            Image(uiImage: image)
+                .resizable()
+                .renderingMode(.original)
+                .scaledToFit()
+                .frame(height: 52)
+                .accessibilityLabel("KAYO")
+        } else {
+            Text("KAYO")
+                .font(.system(size: 56, weight: .medium, design: .default))
+                .tracking(0.6)
+                .foregroundStyle(Color.kayoNearBlack)
         }
     }
 }
